@@ -37,8 +37,30 @@
   }
 </style>
 
-<button></button>
+<button>Button</button>
+
 <script>
+
+const divs = document.querySelectorAll('div');
+const button = document.querySelector('button');
+
+function logText(e) {
+  console.log(this.classList.value);
+  // e.stopPropagation(); //stops bubbling
+  // console.log(this)
+}
+
+// bubbleup vs. capture
+divs.forEach(div => div.addEventListener('click', logText, {
+  capture: true, //runs not on a bubble up, but capture down | runs function on the way DOWN
+  once: true
+}));
+
+button.addEventListener('click', () => {
+  console.log('Clicked!');
+}, {
+  once: true
+});
 
 </script>
 </body>
